@@ -6,6 +6,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 $name     = $_POST["fullname"];
+$checkcertificate = $_POST["checkcertificate"];
 
 $options = new Options;
 $options->setChroot(__DIR__);
@@ -17,7 +18,12 @@ $dompdf = new Dompdf($options);
 $dompdf->setPaper("letter", "landscape");
 
 //Load the HTML and replace placeholders with values from the form
-$html = file_get_contents("certificate.php");
+if ($checkcertificate == 1) {
+    $html = file_get_contents("certificate.php");
+}elseif ($checkcertificate == 2) {
+    $html = file_get_contents("certificate2.php");
+}
+
 
 $html = str_replace(["{{ fullname }}"], [$name], $html);
 
