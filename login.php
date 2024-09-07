@@ -15,6 +15,22 @@ if (isset($_POST['login'])) {
         $row = $query->fetch_assoc();
         if ($password == $row['password']) {
             $_SESSION['participant'] = $row['id'];
+            header('location: home');
+        } else {
+            $_SESSION['error'] = 'Incorrect password';
+        }
+    }
+
+    $sql   = "SELECT * FROM admin WHERE username = '$participant'";
+    $query = $conn->query($sql);
+
+    if ($query->num_rows < 1) {
+        $_SESSION['error'] = 'Cannot find account with the username';
+    } else {
+        $row = $query->fetch_assoc();
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['admin'] = $row['id'];
+            header('location: admin/home');
         } else {
             $_SESSION['error'] = 'Incorrect password';
         }
