@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     $participant    = $_POST['participant'];
     $password = $_POST['password'];
 
-    $sql   = "SELECT * FROM participant WHERE id = '$participant'";
+    $sql   = "SELECT * FROM participant WHERE participant_id = '$participant'";
     $query = $conn->query($sql);
 
     if ($query->num_rows < 1) {
@@ -24,6 +24,6 @@ if (isset($_POST['login'])) {
     $_SESSION['error'] = 'Input voter credentials first';
 }
 
-header('location: index.php');
+header('location: index');
 
 ?>
