@@ -2,6 +2,9 @@
 <?php include 'includes/header.php'; ?>
 
 <body>
+    <header class="bg-dark py-3 text-white text-center">
+e-Certificate
+    </header>
     <div class="container-md">
         <h1 class="text-center text-capitalize">Welcome, <?= $_SESSION['fullname'] ?></h1>
         <div class="row row-cols-1 row-cols-md-3 g-4">

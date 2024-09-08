@@ -19,4 +19,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.css" />
 
     <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+    <!-- boxicon -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
