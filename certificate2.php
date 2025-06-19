@@ -7,14 +7,16 @@
     }
 
     .fullname {
-        font-size: 50px;
+        font-size: 45px;
         font-family: "Georgia", serif;
-        text-transform: capitalize;
+        text-transform: uppercase;
         position: absolute;
         color: #040348;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        white-space: nowrap;
+        font-weight: bold;
     }
 
     .bringinfront {

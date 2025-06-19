@@ -19,7 +19,7 @@ $dompdf->setPaper("letter", "landscape");
 
 //Load the HTML and replace placeholders with values from the form
 if ($checkcertificate == 1) {
-    $html = file_get_contents("certificate.php");
+    $html = file_get_contents("certificate1.php");
 }elseif ($checkcertificate == 2) {
     $html = file_get_contents("certificate2.php");
 }
