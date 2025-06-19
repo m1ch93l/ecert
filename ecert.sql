@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `acquired_cert` (
   `certificate_id` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK_acquired_cert_certificate` (`certificate_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table ecert.acquired_cert: ~2 rows (approximately)
 INSERT INTO `acquired_cert` (`id`, `participant_id`, `certificate_id`) VALUES
@@ -33,10 +33,10 @@ INSERT INTO `acquired_cert` (`id`, `participant_id`, `certificate_id`) VALUES
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `fullname` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table ecert.admin: ~0 rows (approximately)
 INSERT INTO `admin` (`id`, `username`, `password`, `fullname`) VALUES
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `certificate` (
   `type` varchar(50) NOT NULL DEFAULT '0',
   `event` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table ecert.certificate: ~2 rows (approximately)
 INSERT INTO `certificate` (`id`, `type`, `event`) VALUES
@@ -60,9 +60,9 @@ CREATE TABLE IF NOT EXISTS `participant` (
   `id` int NOT NULL AUTO_INCREMENT,
   `participant_id` int DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table ecert.participant: ~0 rows (approximately)
 INSERT INTO `participant` (`id`, `participant_id`, `password`, `fullname`) VALUES
