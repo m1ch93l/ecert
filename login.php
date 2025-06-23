@@ -4,6 +4,7 @@ include 'includes/conn.php';
 require_once 'model/user.php';
 
 if (isset($_POST['login'])) {
+
     $participant = $_POST['participant'];
     $password    = $_POST['password'];
 
@@ -17,7 +18,7 @@ if (isset($_POST['login'])) {
         header('location: home');
         exit();
     } else {
-        $_SESSION['error'] = 'Incorrect password';
+        $_SESSION['error'] = 'Incorrect Credentials';
     }
 
     if ($admin && password_verify($password, $admin['password'])) {
@@ -25,11 +26,8 @@ if (isset($_POST['login'])) {
         header('location: admin/home');
         exit();
     } else {
-        $_SESSION['error'] = 'Incorrect password';
+        $_SESSION['error'] = 'Incorrect Credentials';
     }
-
-} else {
-    $_SESSION['error'] = 'Input voter credentials first';
 }
 
 header('location: index');

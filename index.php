@@ -16,10 +16,14 @@ if (isset($_SESSION['participant'])) {
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container position-fixed top-0 end-0 p-3">
                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <img src="..." class="rounded me-2" alt="...">
-                        <strong class="me-auto">Bootstrap</strong>
-                        <small>11 mins ago</small>
+                    <div class="toast-header text-danger">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                        </svg>
+                        <strong class="me-auto ms-1">System</strong>
+                        <small></small>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
@@ -42,9 +46,9 @@ if (isset($_SESSION['participant'])) {
                         <form action="login" method="POST" hx-boost="true">
                             <div class="form-group">
                                 <label for="participant">Username</label>
-                                <input type="text" class="form-control" id="participant" name="participant" autofocus>
+                                <input type="text" class="form-control" id="participant" name="participant" autofocus required>
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
+                                <input type="password" class="form-control" id="password" name="password" required>
                                 <br>
                                 <button type="submit" class="form-control btn btn-primary" name="login">
                                     Login
