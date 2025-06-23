@@ -7,22 +7,23 @@ if (isset($_POST['login'])) {
     $participant = $_POST['participant'];
     $password    = $_POST['password'];
 
-    $user = new User();
-    $row  = $user->getUser($participant);
+    $user  = new User();
+    $row   = $user->getUser($participant);
+    $admin = $user->getUserAdmin($participant);
 
-    if ($password == $row['password']) {
+    if ($row && $password == $row['password']) {
         $_SESSION['participant'] = $row['id'];
         $_SESSION['fullname']    = $row['fullname'];
         header('location: home');
+        exit();
     } else {
         $_SESSION['error'] = 'Incorrect password';
     }
 
-    $row = $user->getUserAdmin($participant);
-
-    if (password_verify($password, $row['password'])) {
-        $_SESSION['admin'] = $row['id'];
+    if ($admin && password_verify($password, $admin['password'])) {
+        $_SESSION['admin'] = $admin['id'];
         header('location: admin/home');
+        exit();
     } else {
         $_SESSION['error'] = 'Incorrect password';
     }
@@ -32,5 +33,4 @@ if (isset($_POST['login'])) {
 }
 
 header('location: index');
-
-?>
+exit();
