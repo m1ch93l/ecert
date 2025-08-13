@@ -31,9 +31,11 @@
         <h1 class="text-center text-capitalize">Welcome, <?= $_SESSION['fullname'] ?></h1>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
-            $sql   = "SELECT acquired_cert.participant_id, certificate.id as certificate_id, certificate.type, certificate.event FROM acquired_cert INNER JOIN certificate ON acquired_cert.certificate_id = certificate.id WHERE acquired_cert.participant_id = '" . $_SESSION['participant'] . "'";
-            $query = $conn->query($sql);
-            while ($row = $query->fetch_assoc()) {
+            $stmt = $conn->prepare("SELECT acquired_cert.participant_id, certificate.id as certificate_id, certificate.type, certificate.event FROM acquired_cert INNER JOIN certificate ON acquired_cert.certificate_id = certificate.id WHERE acquired_cert.participant_id = ?");
+            $stmt->bind_param("i", $_SESSION['participant']);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_assoc()) {
                 ?>
                 <div class="col">
                     <div class="card h-100">
@@ -54,6 +56,7 @@
                 </div>
                 <?php
             }
+            $stmt->close();
             ?>
         </div>
     </div>
