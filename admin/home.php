@@ -96,16 +96,13 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel"><?=$row['fullname']?></h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <form action="add-cert" method="post">
                                                                 <div class="mb-3">
-                                                                    <label for="participant_id"
-                                                                        class="form-label">Participant
-                                                                        ID</label>
                                                                     <input type="hidden" class="form-control"
                                                                         id="participant_id" name="participant_id"
                                                                         value="<?php echo $row["id"]; ?>">
