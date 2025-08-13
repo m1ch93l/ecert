@@ -44,7 +44,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $stmt   = $conn->prepare("SELECT * FROM participant");
+                                $stmt = $conn->prepare("SELECT * FROM participant");
                                 $stmt->execute();
                                 $result = $stmt->get_result();
                                 while ($row = $result->fetch_assoc()) {
@@ -63,7 +63,7 @@
                                         <td class="text-start text-capitalize"><?php echo $row["fullname"]; ?></td>
                                         <td class="text-start">
                                             <?php
-                                            $stmt2   = $conn->prepare("SELECT COUNT(*) as count FROM acquired_cert WHERE participant_id = ?");
+                                            $stmt2 = $conn->prepare("SELECT COUNT(*) as count FROM acquired_cert WHERE participant_id = ?");
                                             $stmt2->bind_param("i", $row["id"]);
                                             $stmt2->execute();
                                             $result2 = $stmt2->get_result();
@@ -75,7 +75,7 @@
                                             <div class="collapse" id="<?php echo $row["id"]; ?>">
                                                 <div class="card card-body">
                                                     <?php
-                                                    $stmt3   = $conn->prepare("SELECT * FROM acquired_cert JOIN certificate ON acquired_cert.certificate_id = certificate.id WHERE participant_id = ?");
+                                                    $stmt3 = $conn->prepare("SELECT * FROM acquired_cert JOIN certificate ON acquired_cert.certificate_id = certificate.id WHERE participant_id = ?");
                                                     $stmt3->bind_param("i", $row["id"]);
                                                     $stmt3->execute();
                                                     $result3 = $stmt3->get_result();
@@ -96,7 +96,9 @@
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel"><?=$row['fullname']?></h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                <?= $row['fullname'] ?>
+                                                            </h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
@@ -114,7 +116,7 @@
                                                                     <select class="form-select" id="certificate_id"
                                                                         name="certificate_id">
                                                                         <?php
-                                                                        $stmt4   = $conn->prepare("SELECT * FROM certificate");
+                                                                        $stmt4 = $conn->prepare("SELECT * FROM certificate");
                                                                         $stmt4->execute();
                                                                         $result4 = $stmt4->get_result();
                                                                         while ($row4 = $result4->fetch_assoc()) {
@@ -158,4 +160,3 @@
 </script>
 
 </html>
-
