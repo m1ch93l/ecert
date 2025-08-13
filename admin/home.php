@@ -38,7 +38,7 @@
                                     <th class="text-start">USN</th>
                                     <th class="text-start">Full Name</th>
                                     <th class="text-start">Certificates</th>
-                                    <th>Events</th>
+                                    <th width="20%">Events</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -75,13 +75,23 @@
                                             <div class="collapse" id="<?php echo $row["id"]; ?>">
                                                 <div class="card card-body">
                                                     <?php
-                                                    $stmt3 = $conn->prepare("SELECT * FROM acquired_cert JOIN certificate ON acquired_cert.certificate_id = certificate.id WHERE participant_id = ?");
+                                                    $stmt3 = $conn->prepare("SELECT event, certificate_id, participant_id, certificate.id as cert_id FROM acquired_cert JOIN certificate ON acquired_cert.certificate_id = certificate.id WHERE participant_id = ?");
                                                     $stmt3->bind_param("i", $row["id"]);
                                                     $stmt3->execute();
                                                     $result3 = $stmt3->get_result();
                                                     while ($row3 = $result3->fetch_assoc()) {
                                                         ?>
-                                                        <div><?= $row3["event"]; ?></div><br>
+                                                        <div id="cert-row-<?= $row3['cert_id'] ?>-<?= $row3['participant_id'] ?>"
+                                                            class="d-flex justify-content-between text-capitalize">
+                                                            <?= $row3["event"] ?>
+                                                            <button
+                                                                hx-post="del-part-cert.php?id=<?= $row3['cert_id'] ?>&certid=<?= $row3['participant_id'] ?>"
+                                                                hx-target="#cert-row-<?= $row3['cert_id'] ?>-<?= $row3['participant_id'] ?>"
+                                                                hx-swap="outerHTML" class="btn btn-sm btn-outline-danger">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                        <br>
                                                         <?php
                                                     }
                                                     ?>
