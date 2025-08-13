@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="table-responsive">
-                        <table id="student" class="table table-striped" style="width:100%">
+                        <table id="student" class="table table-striped" style="width:100%" hx-trigger="load">
                             <thead>
                                 <tr>
                                     <th class="text-start">USN</th>
