@@ -2,24 +2,59 @@
 
 require_once __DIR__ . '/includes/session.php';
 
-function editUser($conn)
+function createCertificate($conn)
 {
-    $sql  = "SELECT * FROM user WHERE id = :id";
+    $sql  = "INSERT INTO certificate (type, event) VALUES (?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':id', $_GET['id']);
+    $stmt->bind_param("ss", $_POST['type'], $_POST['event']);
     $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    require_once __DIR__ . "/views/edit-user.php";
-    return $user;
+}
+
+function readCertificate($conn)
+{
+    $sql  = "SELECT * FROM certificate";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $certificates = $stmt->get_result();
+    require_once __DIR__ . "/views/read-certificate.php";
+    return $certificates;
+}
+
+function editCertificate($conn)
+{
+    $sql  = "SELECT * FROM certificate WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $_GET['id']);
+    $stmt->execute();
+    $result      = $stmt->get_result();
+    $certificate = $result->fetch_assoc(); // fetch as associative array
+    require_once __DIR__ . "/views/edit-certificate.php";
+    return $certificate;
+}
+
+function updateCertificate($conn)
+{
+    $sql  = "UPDATE certificate SET type = ?, event = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssi", $_POST['type'], $_POST['event'], $_POST['id']);
+    $stmt->execute();
+}
+
+function deleteCertificate($conn)
+{
+    $sql  = "DELETE FROM certificate WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $_GET['id']);
+    $stmt->execute();
 }
 
 // Mapping actions to functions
 $actions = [
-    'create' => 'createUser',
-    'read'   => 'readUser',
-    'edit'   => 'editUser',
-    'update' => 'updateUser',
-    'delete' => 'deleteUser',
+    'create' => 'createCertificate',
+    'read'   => 'readCertificate',
+    'edit'   => 'editCertificate',
+    'update' => 'updateCertificate',
+    'delete' => 'deleteCertificate',
 ];
 
 // Initialize $action as an empty string by default
