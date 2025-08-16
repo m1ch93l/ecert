@@ -5,6 +5,16 @@
     <?php require_once __DIR__ . '/includes/nav.php'; ?>
     <main>
         <div class="container-md">
+
+            <div class="row g-3 py-2">
+                <div class="col-sm-3">
+                    <form action="import.php" enctype="multipart/form-data" method="post">
+                        <input type="file" class="form-control form-control-sm" name="importStudents"></input>
+                        <button type="submit" class="btn btn-primary btn-sm mt-2" name="save_import">Import</button>
+                    </form>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-sm-12">
                     <div class="table-responsive">
@@ -137,7 +147,7 @@
             </div>
         </div>
     </main>
-    
+
 </body>
 
 <script>
