@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'includes/conn.php';
-require_once 'model/user.php';
+
+require_once __DIR__ . '/model/user.php';
 
 if (isset($_POST['login'])) {
 
