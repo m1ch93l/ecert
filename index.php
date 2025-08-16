@@ -1,13 +1,7 @@
 <?php //echo password_hash("amasco2023", PASSWORD_BCRYPT);
 session_start();
-if (isset($_SESSION['admin'])) {
-    header('location: admin/home');
-}
-
-if (isset($_SESSION['participant'])) {
-    header('location: home');
-}
 ?>
+
 <!-- header of html -->
 <?php include 'includes/header.php'; ?>
 
@@ -46,7 +40,8 @@ if (isset($_SESSION['participant'])) {
                         <form action="login" method="POST" hx-boost="true">
                             <div class="form-group">
                                 <label for="participant">Username</label>
-                                <input type="text" class="form-control" id="participant" name="participant" autofocus required>
+                                <input type="text" class="form-control" id="participant" name="participant" autofocus
+                                    required>
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" required>
                                 <br>
