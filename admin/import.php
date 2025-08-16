@@ -18,14 +18,22 @@ if (isset($_POST['save_import'])) {
         $spreadsheet       = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileNamePath);
         $data              = $spreadsheet->getActiveSheet()->toArray();
 
+        $count = 0;
+
         foreach ($data as $row) {
+            if ($count == 0) {
+                $count++;
+                continue; // Skip header row
+            }
 
-            $participant_id        = strtoupper($row['0']);
+            $participant_id    = $row['0'];
             $unhashed_password = $row['1'];
-            $fullname        = $row['2'];
+            $fullname          = $row['2'];
 
-            $studentQuery = "INSERT INTO participant (participant_id, password, fullname) VALUES ('$participant_id', '$unhashed_password', '$fullname')";
-            $result       = mysqli_query($conn, $studentQuery);
+            $stmt = $conn->prepare("INSERT INTO participant (participant_id, password, fullname) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $participant_id, $unhashed_password, $fullname);
+            $result = $stmt->execute();
+            $count++;
         }
         header('Location: home.php');
     } else {
