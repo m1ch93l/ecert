@@ -10,8 +10,11 @@
                 <div class="col-sm-3">
                     <form action="import.php" enctype="multipart/form-data" method="post">
                         <input type="file" class="form-control form-control-sm" name="importStudents"></input>
-                        <button type="submit" class="btn btn-primary btn-sm mt-2" name="save_import">Import</button>
+                        <button type="submit" class="btn btn-warning btn-sm mt-2" name="save_import">Import Excel</button>
                     </form>
+                </div>
+                <div class="col-sm-3">
+                    <a href="export.php" class="btn btn-dark btn-sm">Download Excel</a>
                 </div>
             </div>
 
@@ -30,7 +33,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $stmt = $conn->prepare("SELECT * FROM participant");
+                                $stmt = $conn->prepare("SELECT * FROM participant ORDER BY fullname ASC");
                                 $stmt->execute();
                                 $result = $stmt->get_result();
                                 while ($row = $result->fetch_assoc()) {
