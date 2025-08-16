@@ -13,7 +13,7 @@ class User extends Database
 
     public function getUser($id)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM participant WHERE id = :id");
+        $stmt = $this->conn->prepare("SELECT * FROM participant WHERE participant_id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the each row
