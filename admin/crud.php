@@ -48,6 +48,26 @@ function deleteCertificate($conn)
     $stmt->execute();
 }
 
+function editFullname($conn)
+{
+    $sql  = "SELECT * FROM participant WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $_GET['id']);
+    $stmt->execute();
+    $result      = $stmt->get_result();
+    $participant = $result->fetch_assoc(); // fetch as associative array
+    require_once __DIR__ . "/views/edit-fullname.php";
+    return $participant;
+}
+
+function updateFullname($conn)
+{
+    $sql  = "UPDATE participant SET fullname = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("si", $_POST['fullname'], $_POST['id']);
+    $stmt->execute();
+}
+
 // Mapping actions to functions
 $actions = [
     'create' => 'createCertificate',
@@ -55,6 +75,8 @@ $actions = [
     'edit'   => 'editCertificate',
     'update' => 'updateCertificate',
     'delete' => 'deleteCertificate',
+    'editFullname' => 'editFullname',
+    'updateFullname' => 'updateFullname',
 ];
 
 // Initialize $action as an empty string by default
