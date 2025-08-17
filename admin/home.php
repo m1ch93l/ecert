@@ -27,7 +27,13 @@
                     hx-trigger="load"
                     hx-target="#table-container"
                     hx-swap="innerHTML">
-                        
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+
                     </div>
                 </div>
             </div>
