@@ -1,10 +1,4 @@
-<?php require_once __DIR__ . '/../includes/conn.php';
-
-// Fetch data from the database
-$stmt = $conn->prepare("SELECT * FROM participant ORDER BY fullname ASC");
-$stmt->execute();
-$rows = $stmt->get_result();
-?>
+<?php require_once __DIR__ . '/../includes/conn.php'; ?>
 
 <table id="studentTable" class="table hover" style="width:100%">
     <thead>
