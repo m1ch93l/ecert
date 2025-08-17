@@ -1,6 +1,23 @@
-<?php require_once __DIR__ . '/../includes/conn.php'; ?>
+<?php require_once __DIR__ . '/../includes/conn.php';
 
-<table id="studentTable" class="table hover" style="width:100%">
+$limit  = 10; // rows per page
+$page   = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
+
+// Count all participants
+$countStmt = $conn->prepare("SELECT COUNT(*) as total FROM participant");
+$countStmt->execute();
+$totalRows  = $countStmt->get_result()->fetch_assoc()['total'];
+$totalPages = ceil($totalRows / $limit);
+
+// Fetch participants for this page
+$stmt = $conn->prepare("SELECT * FROM participant ORDER BY fullname LIMIT ? OFFSET ?");
+$stmt->bind_param("ii", $limit, $offset);
+$stmt->execute();
+$rows = $stmt->get_result();
+?>
+
+<table class="table hover" style="width:100%">
     <thead>
         <tr>
             <th class="text-start">Full Name</th>
@@ -10,10 +27,8 @@
             <th>Action</th>
         </tr>
     </thead>
-    <tbody><?php
-    $stmt = $conn->prepare("SELECT * FROM participant");
-    $stmt->execute();
-    $rows = $stmt->get_result();
+    <tbody id="search-results"><?php
+
     foreach ($rows as $row) : ?>
             <tr>
                 <td class="text-start text-capitalize"><?php echo $row["fullname"]; ?>
@@ -124,3 +139,29 @@
     ?>
     </tbody>
 </table>
+
+<!-- Simple Pagination -->
+<div class="mt-3 d-flex justify-content-start gap-2">
+    <!-- Previous -->
+    <?php if ($page > 1) : ?>
+        <button hx-get="table.php?page=<?= $page - 1 ?>" hx-target="#table-container" hx-swap="innerHTML"
+            class="btn btn-sm btn-outline-secondary">
+            Previous
+        </button>
+    <?php else : ?>
+        <button class="btn btn-sm btn-outline-secondary" disabled>Previous</button>
+    <?php endif; ?>
+
+    <!-- Page Info -->
+    <span class="align-self-center">Page <?= $page ?> of <?= $totalPages ?></span>
+
+    <!-- Next -->
+    <?php if ($page < $totalPages) : ?>
+        <button hx-get="table.php?page=<?= $page + 1 ?>" hx-target="#table-container" hx-swap="innerHTML"
+            class="btn btn-sm btn-outline-secondary">
+            Next
+        </button>
+    <?php else : ?>
+        <button class="btn btn-sm btn-outline-secondary" disabled>Next</button>
+    <?php endif; ?>
+</div>

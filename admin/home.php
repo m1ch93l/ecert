@@ -20,19 +20,22 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="table-responsive"
-                    id="table-container"
-                    hx-get="table.php"
-                    hx-trigger="load"
-                    hx-target="#table-container"
-                    hx-swap="innerHTML">
+                <div class="col-sm-3 offset-sm-9">
+                    <input class="form-control" type="search" name="search"
+                        placeholder="Search..." hx-get="search.php"
+                        hx-trigger="input changed delay:500ms, keyup[key=='Enter']" hx-target="#table-container"
+                        hx-swap="innerHTML">
+                </div>
 
-                    <div class="d-flex justify-content-center align-items-center">
-                        <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                <div class="col-sm-12">
+                    <div class="table-responsive" id="table-container" hx-get="table.php" hx-trigger="load"
+                        hx-target="#table-container" hx-swap="innerHTML">
+
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>
-                    </div>
 
                     </div>
                 </div>
@@ -56,14 +59,5 @@
     </div>
 
 </body>
-
-<script>
-    // Reinitialize DataTables each time htmx updates the table
-    document.body.addEventListener("htmx:afterSwap", function(evt) {
-      if (evt.target.id === "table-container") {
-        $('#studentTable').DataTable();
-      }
-    });
-  </script>
 
 </html>
