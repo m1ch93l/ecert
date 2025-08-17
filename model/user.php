@@ -1,6 +1,6 @@
 <?php
 
-require_once './config/database.php';
+include __DIR__ . '/../config/database.php';
 
 class User extends Database
 {
@@ -11,20 +11,22 @@ class User extends Database
         $this->conn = $this->getConnection();
     }
 
-    public function getUser($id)
+    public function getUsers($id, $table, $column)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM participant WHERE participant_id = :id");
+        $stmt = $this->conn->prepare("SELECT * FROM $table WHERE $column = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the each row
         return $result ?: null;
     }
+
+    public function getUser($id)
+    {
+        return $this->getUsers($id, 'participant', 'participant_id');
+    }
+
     public function getUserAdmin($id)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM admin WHERE username = :id");
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the each row
-        return $result ?: null;
+        return $this->getUsers($id, 'admin', 'username');
     }
 }

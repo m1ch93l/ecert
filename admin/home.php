@@ -9,7 +9,7 @@
             <div class="row g-3 py-2">
                 <div class="col-sm-3">
                     <form action="import.php" enctype="multipart/form-data" method="post">
-                        <input type="file" class="form-control form-control-sm" name="importStudents"></input>
+                        <input type="file" class="form-control form-control-sm" name="importStudents" required></input>
                         <button type="submit" class="btn btn-warning btn-sm mt-2" name="save_import">Import Excel</button>
                     </form>
                 </div>
@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="table-responsive">
-                        <table id="student" class="table table-striped" style="width:100%" hx-trigger="load">
+                        <table id="student" class="table hover" style="width:100%" hx-trigger="load">
                             <thead>
                                 <tr>
                                     <th class="text-start">USN</th>

@@ -1,20 +1,20 @@
 <?php
 session_start();
-include 'includes/conn.php';
-require_once 'model/user.php';
+
+require_once __DIR__ . '/model/user.php';
 
 if (isset($_POST['login'])) {
 
     $participant = $_POST['participant'];
     $password    = $_POST['password'];
 
-    $user  = new User();
-    $row   = $user->getUser($participant);
-    $admin = $user->getUserAdmin($participant);
+    $user    = new User();
+    $student = $user->getUser($participant);
+    $admin   = $user->getUserAdmin($participant);
 
-    if ($row && $password == $row['password']) {
-        $_SESSION['participant'] = $row['id'];
-        $_SESSION['fullname']    = $row['fullname'];
+    if ($student && $password == $student['password']) {
+        $_SESSION['participant'] = $student['id'];
+        $_SESSION['fullname']    = $student['fullname'];
         header('location: home');
         exit();
     } else {

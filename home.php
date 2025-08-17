@@ -31,11 +31,9 @@
         <h1 class="text-center text-capitalize">Welcome, <?= $_SESSION['fullname'] ?></h1>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
-            $stmt = $conn->prepare("SELECT acquired_cert.participant_id, certificate.id as certificate_id, certificate.type, certificate.event FROM acquired_cert INNER JOIN certificate ON acquired_cert.certificate_id = certificate.id WHERE acquired_cert.participant_id = ?");
-            $stmt->bind_param("i", $_SESSION['participant']);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = $result->fetch_assoc()) {
+            $certificate  = new Certificate();
+            $certificates = $certificate->getCertificatesByParticipantId($_SESSION['participant']);
+            foreach ($certificates as $row) {
                 ?>
                 <div class="col">
                     <div class="card h-100">
@@ -56,7 +54,6 @@
                 </div>
                 <?php
             }
-            $stmt->close();
             ?>
         </div>
     </div>
