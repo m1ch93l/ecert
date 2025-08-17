@@ -18,7 +18,7 @@
                         <a class="nav-link" href="#">Pricing</a>
                     </li> -->
             </ul>
-            <a href="logout" hx-boost="true" class="navbar-text text-uppercase text-decoration-none text-danger">
+            <a href="logout" class="navbar-text text-uppercase text-decoration-none text-danger">
                 Logout
             </a>
         </div>

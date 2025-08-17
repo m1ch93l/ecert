@@ -37,7 +37,7 @@ session_start();
                         <h3 class="card-title">e-Certificate</h3>
                     </div>
                     <div class="card-body">
-                        <form action="login" method="POST" hx-boost="true">
+                        <form action="login" method="POST">
                             <div class="form-group">
                                 <label for="participant">Username</label>
                                 <input type="text" class="form-control" id="participant" name="participant" autofocus
