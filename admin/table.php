@@ -27,7 +27,7 @@ $rows = $stmt->get_result();
             <th>Action</th>
         </tr>
     </thead>
-    <tbody id="search-results"><?php
+    <tbody><?php
 
     foreach ($rows as $row) : ?>
             <tr>
