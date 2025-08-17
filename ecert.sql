@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 6.0.0-dev+20250718.d42db65a1e
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 19, 2025 at 01:02 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Aug 17, 2025 at 08:18 AM
+-- Server version: 8.4.3
+-- PHP Version: 8.3.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `acquired_cert` (
-  `id` int(11) NOT NULL,
-  `participant_id` int(11) NOT NULL DEFAULT 0,
-  `certificate_id` int(11) NOT NULL DEFAULT 0
+  `id` int NOT NULL,
+  `participant_id` int NOT NULL DEFAULT '0',
+  `certificate_id` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -40,10 +40,10 @@ CREATE TABLE `acquired_cert` (
 --
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `fullname` varchar(50) DEFAULT NULL
+  `id` int NOT NULL,
+  `username` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fullname` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -60,9 +60,9 @@ INSERT INTO `admin` (`id`, `username`, `password`, `fullname`) VALUES
 --
 
 CREATE TABLE `certificate` (
-  `id` int(11) NOT NULL,
-  `type` varchar(50) NOT NULL DEFAULT '0',
-  `event` varchar(50) NOT NULL DEFAULT '0'
+  `id` int NOT NULL,
+  `type` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
+  `event` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -80,10 +80,10 @@ INSERT INTO `certificate` (`id`, `type`, `event`) VALUES
 --
 
 CREATE TABLE `participant` (
-  `id` int(11) NOT NULL,
-  `participant_id` int(11) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `fullname` varchar(255) NOT NULL DEFAULT '0'
+  `id` int NOT NULL,
+  `participant_id` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fullname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -91,8 +91,8 @@ CREATE TABLE `participant` (
 --
 
 INSERT INTO `participant` (`id`, `participant_id`, `password`, `fullname`) VALUES
-(1, 1, '1', 'Juan Dela Cruz'),
-(2, 2, '2', 'Pedro Penduko');
+(1, '1', '1', 'Juan Dela Cruz'),
+(2, '2', '2', 'Pedro Penduko');
 
 --
 -- Indexes for dumped tables
@@ -131,25 +131,25 @@ ALTER TABLE `participant`
 -- AUTO_INCREMENT for table `acquired_cert`
 --
 ALTER TABLE `acquired_cert`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `certificate`
 --
 ALTER TABLE `certificate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `participant`
 --
 ALTER TABLE `participant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
