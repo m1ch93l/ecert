@@ -1,8 +1,16 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'ecert');
+
+$config = [
+    'host'   => 'localhost',
+    'user'   => 'root',
+    'pass'   => '',
+    'dbname' => 'ecert',
+];
+
+$conn = new mysqli($config['host'], $config['user'], $config['pass'], $config['dbname']);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die(json_encode([
+        'error' => $conn->connect_error,
+    ]));
 }
-
-?>
