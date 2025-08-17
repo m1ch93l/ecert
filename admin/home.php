@@ -21,8 +21,7 @@
 
             <div class="row">
                 <div class="col-sm-3 offset-sm-9">
-                    <input class="form-control" type="search" name="search"
-                        placeholder="Search..." hx-get="search.php"
+                    <input class="form-control" type="search" name="search" placeholder="Search..." hx-get="search.php"
                         hx-trigger="input changed delay:500ms, keyup[key=='Enter']" hx-target="#table-container"
                         hx-swap="innerHTML">
                 </div>
@@ -32,9 +31,10 @@
                         hx-target="#table-container" hx-swap="innerHTML">
 
                         <div class="d-flex justify-content-center align-items-center">
-                            <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
+                            <button class="btn btn-primary" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                                <span role="status">Loading...</span>
+                            </button>
                         </div>
 
                     </div>
