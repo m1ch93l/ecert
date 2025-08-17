@@ -33,24 +33,7 @@ require_once 'includes/header.php';
                         </tr>
                     </thead>
                     <tbody id="certificate-list" hx-get="crud.php?action=read" hx-trigger="load, every 2s">
-                        <!-- Certificate rows will be loaded here by htmx. Example row for reference: -->
-                        <!--
-                    <tr>
-                        <td class="text-center">Sample Type</td>
-                        <td class="text-center">Sample Event</td>
-                        <td class="text-center">
-                            <button 
-                                class="btn btn-sm btn-primary"
-                                hx-get="crud.php?action=edit&id=1" 
-                                hx-target="#modalBody" 
-                                hx-trigger="click"
-                                data-bs-toggle="modal" 
-                                data-bs-target="#showEachCard">
-                                Edit
-                            </button>
-                        </td>
-                    </tr>
-                    -->
+                        
                     </tbody>
                 </table>
             </div>
