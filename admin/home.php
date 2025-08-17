@@ -40,6 +40,21 @@
         </div>
     </main>
 
+    <!-- Modal para sa bawat user -->
+    <div class="modal fade" id="showEditNameModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Full Name</h1>
+                </div>
+                <!-- mag add ng id kagaya ng "modalBody" para sa handle ng parameter -->
+                <div class="modal-body" id="modalBody">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 <script>

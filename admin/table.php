@@ -16,7 +16,13 @@
     $rows = $stmt->get_result();
     foreach ($rows as $row) : ?>
             <tr>
-                <td class="text-start text-capitalize"><?php echo $row["fullname"]; ?></td>
+                <td class="text-start text-capitalize"><?php echo $row["fullname"]; ?>
+                    <a type="button" hx-get="crud.php?action=editFullname&id=<?= $row['id'] ?>" hx-target="#modalBody"
+                        hx-trigger="click" hx-swap="innerHTML" data-bs-toggle="modal" data-bs-target="#showEditNameModal"
+                        class="text-decoration-none">
+                        <i class="bi bi-pen"></i>
+                    </a>
+                </td>
                 <td class="text-start">
                     <div class="d-flex justify-content-between">
                         <?php echo $row["participant_id"]; ?>
