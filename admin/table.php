@@ -3,19 +3,20 @@
 <table id="studentTable" class="table hover" style="width:100%">
     <thead>
         <tr>
-            <th class="text-start">USN</th>
             <th class="text-start">Full Name</th>
+            <th class="text-start">USN</th>
             <th class="text-start">Certificates</th>
             <th width="20%">Events</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody><?php
-    $stmt = $conn->prepare("SELECT * FROM participant ORDER BY fullname ASC");
+    $stmt = $conn->prepare("SELECT * FROM participant");
     $stmt->execute();
     $rows = $stmt->get_result();
     foreach ($rows as $row) : ?>
             <tr>
+                <td class="text-start text-capitalize"><?php echo $row["fullname"]; ?></td>
                 <td class="text-start">
                     <div class="d-flex justify-content-between">
                         <?php echo $row["participant_id"]; ?>
@@ -26,7 +27,6 @@
                         </button>
                     </div>
                 </td>
-                <td class="text-start text-capitalize"><?php echo $row["fullname"]; ?></td>
                 <td class="text-start">
                     <?php
                     $stmt2 = $conn->prepare("SELECT COUNT(*) as count FROM acquired_cert WHERE participant_id = ?");
