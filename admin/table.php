@@ -31,7 +31,12 @@ $rows = $stmt->get_result();
 
     foreach ($rows as $row) : ?>
             <tr>
-                <td class="text-start text-capitalize"><?php echo $row["fullname"]; ?>
+                <td class="text-start text-capitalize" hx-get="crud.php?action=getFullname&id=<?= $row['id'] ?>"
+                    hx-trigger="every 2s" hx-swap="innerHTML" hx-target="#fullname-<?= $row['id'] ?>">
+
+                    <!-- Polling target -->
+                    <span id="fullname-<?= $row['id'] ?>"><?= $row["fullname"]; ?></span>
+
                     <a type="button" hx-get="crud.php?action=editFullname&id=<?= $row['id'] ?>" hx-target="#modalBody"
                         hx-trigger="click" hx-swap="innerHTML" data-bs-toggle="modal" data-bs-target="#showEditNameModal"
                         class="text-decoration-none">

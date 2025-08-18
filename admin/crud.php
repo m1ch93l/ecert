@@ -68,14 +68,27 @@ function updateFullname($conn)
     $stmt->execute();
 }
 
+function getFullname($conn)
+{
+    $sql  = "SELECT fullname FROM participant WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $_GET['id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row    = $result->fetch_assoc();
+    echo htmlspecialchars($row['fullname']);
+    exit;
+}
+
 // Mapping actions to functions
 $actions = [
-    'create' => 'createCertificate',
-    'read'   => 'readCertificate',
-    'edit'   => 'editCertificate',
-    'update' => 'updateCertificate',
-    'delete' => 'deleteCertificate',
-    'editFullname' => 'editFullname',
+    'create'         => 'createCertificate',
+    'read'           => 'readCertificate',
+    'edit'           => 'editCertificate',
+    'update'         => 'updateCertificate',
+    'delete'         => 'deleteCertificate',
+    'getFullname'    => 'getFullname',
+    'editFullname'   => 'editFullname',
     'updateFullname' => 'updateFullname',
 ];
 
