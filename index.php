@@ -43,13 +43,15 @@ session_start();
                                 <input type="text" class="form-control" id="participant" name="participant" autofocus
                                     required>
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
-                                <br>
-                                <button type="submit" class="form-control btn btn-primary" name="login">
+                                <input type="password" class="form-control mb-3" id="password" name="password" required>
+                                <button type="submit" class="form-control btn btn-primary mb-3" name="login">
                                     Login
                                 </button>
                             </div>
                         </form>
+                        <div class="text-center">Don't have an account? <a type="button" class="text-success text-capitalize"
+                                hx-get="verify" hx-target="body" hx-swap="outerHTML" hx-trigger="click"
+                                hx-animate="true">Verify</a></div>
                     </div>
                 </div>
             </div>
