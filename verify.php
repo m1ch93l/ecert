@@ -1,4 +1,4 @@
-<?php //echo password_hash("amasco2023", PASSWORD_BCRYPT);
+<?php //echo password_hash("password", PASSWORD_BCRYPT);
 session_start();
 ?>
 
@@ -29,29 +29,26 @@ session_start();
         <?php unset($_SESSION['error']);
     endif; ?>
 
-    <div class="container-fluid d-flex align-items-center justify-content-center vh-100">
+    <div class="container py-4">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card" style="width: 20rem;">
-                    <div class="card-header">
-                        <h3 class="card-title">e-Certificate</h3>
-                    </div>
+            <div class="col-md-6 col-sm-12 offset-md-3">
+                <div class="card shadow-sm">
                     <div class="card-body">
-                        <form action="login" method="POST">
-                            <div class="form-group">
-                                <label for="participant">Username</label>
-                                <input type="text" class="form-control" id="participant" name="participant" autofocus
-                                    required>
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control mb-3" id="password" name="password" required>
-                                <button type="submit" class="form-control btn btn-primary mb-3" name="login">
-                                    Login
-                                </button>
+                        <form action="verify-usn" method="POST">
+                            <div class="card-title text-capitalize fs-1">Welcome <b>ACLCeans!</b></div>
+                            <p class="mb-4">Please verify your USN account.</p>
+                            <div>
+                                Have already an account?
+                                <a type="button" class="text-success text-capitalize" hx-get="index" hx-target="body"
+                                    hx-swap="outerHTML" hx-trigger="click" hx-animate="true">Login</a>
                             </div>
+                            <br>
+                            <input type="text" class="form-control form-control-sm mb-3" id="usn" name="usn"
+                                placeholder="Enter your USN" required>
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                Submit
+                            </button>
                         </form>
-                        <div class="text-center">Don't have an account? <a type="button" class="text-success text-capitalize"
-                                hx-get="verify" hx-target="body" hx-swap="outerHTML" hx-trigger="click"
-                                hx-animate="true">Verify</a></div>
                     </div>
                 </div>
             </div>

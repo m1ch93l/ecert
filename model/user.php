@@ -29,4 +29,9 @@ class User extends Database
     {
         return $this->getUsers($id, 'admin', 'username');
     }
+
+    public function verifyUsn($usn)
+    {
+        return $this->getUsers($usn, 'participant', 'participant_id');
+    }
 }
