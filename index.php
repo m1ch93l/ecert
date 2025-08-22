@@ -39,7 +39,7 @@ session_start();
                     <div class="card-body">
                         <form action="login" method="POST">
                             <div class="form-group">
-                                <label for="participant">Username</label>
+                                <label for="participant">Username / USN</label>
                                 <input type="text" class="form-control" id="participant" name="participant" autofocus
                                     required>
                                 <label for="password">Password</label>

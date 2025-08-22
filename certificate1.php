@@ -7,12 +7,12 @@
     }
 
     .fullname {
-        font-size: 45px;
+        font-size: 43px;
         font-family: "Georgia", serif;
         text-transform: uppercase;
         position: absolute;
         color: #040348;
-        top: 50%;
+        top: 47%;
         left: 50%;
         transform: translate(-50%, -50%);
         white-space: nowrap;
