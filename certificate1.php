@@ -12,7 +12,7 @@
         text-transform: uppercase;
         position: absolute;
         color: #040348;
-        top: 47%;
+        top: 45%;
         left: 50%;
         transform: translate(-50%, -50%);
         white-space: nowrap;
