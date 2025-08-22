@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 17, 2025 at 08:18 AM
+-- Generation Time: Aug 22, 2025 at 06:38 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -41,9 +41,9 @@ CREATE TABLE `acquired_cert` (
 
 CREATE TABLE `admin` (
   `id` int NOT NULL,
-  `username` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fullname` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fullname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -61,8 +61,8 @@ INSERT INTO `admin` (`id`, `username`, `password`, `fullname`) VALUES
 
 CREATE TABLE `certificate` (
   `id` int NOT NULL,
-  `type` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
-  `event` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0'
+  `type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
+  `event` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `certificate` (
 --
 
 INSERT INTO `certificate` (`id`, `type`, `event`) VALUES
-(1, 'certificate of participation', 'buwan ng wika 2024'),
+(1, 'sertipiko ng partisipasyon', 'buwan ng wika 2024'),
 (2, 'certificate of recognition', 'intramurals 2024');
 
 -- --------------------------------------------------------
@@ -81,9 +81,9 @@ INSERT INTO `certificate` (`id`, `type`, `event`) VALUES
 
 CREATE TABLE `participant` (
   `id` int NOT NULL,
-  `participant_id` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fullname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0'
+  `participant_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
