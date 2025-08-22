@@ -76,7 +76,7 @@ function getFullname($conn)
     $stmt->execute();
     $result = $stmt->get_result();
     $row    = $result->fetch_assoc();
-    echo htmlspecialchars($row['fullname']);
+    echo $row['fullname'] ?? '';
     exit;
 }
 
